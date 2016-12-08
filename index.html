@@ -1,0 +1,139 @@
+
+<html>
+<head>
+<title>To-Do List</title>
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css" />
+      
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.min.css">
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body style="background-image:url('');background-color:black;">
+<style>
+.scrolls{
+  width: 300px;
+    height: 280px;
+    overflow-y: auto;
+    overflow-x:auto;
+	  
+	}
+
+#taskList, #doneList, #taskBox {
+margin-bottom: 15px;
+}
+
+.tdCheckboxes{
+  display: block;
+  float: left;
+  height:25px;
+  width:25px;
+  
+  }
+
+  .btn{
+  border-color:black;    
+  }
+  
+  li{
+  text-align:left;
+  font-weight:bold;
+  padding:2px;
+  font-size:25px;
+    color:white;
+  }
+
+</style>
+
+<div class="container-fluid">
+
+<div class="row text-center">
+<div class="col-xs-12">
+<h1 style="font-family:Lobster;margin-bottom:35px;color:white;">To-Do App</h1>
+</div>
+</div>
+
+<div class="row text-center">
+<div class="col-xs-12">
+
+<input type="text" id="taskBox" style="height:35px;width:250px;font-size:15px;border-color:black;border-radius:10px" maxlength="60" placeholder="Write Your Task Here...... ">
+<button class="btn btn-md" id="addTask" style="border-radius:15px;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+</div>
+</div>
+
+
+
+
+<div class="row text-center">
+<div class="col-xs-1"></div>
+<div class="col-xs-10">
+<ol id="taskList" class="scrolls"></ol>
+</div>
+<div class="col-xs-1"></div>
+</div>
+
+
+<div class="row text-center">
+<div class="col-xs-12">
+<button class="btn btn-lg" id="clear" ><i class="fa fa-refresh" aria-hidden="true"></i></button>
+<button class="btn btn-lg" id="clearSelected" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+</div>
+</div>
+<div class="row text-center" style="margin-top:10px;">
+<div class="col-xs-12">
+<p style="color:white;"><i class="fa fa-copyright" aria-hidden="true"></i>KaushikCodeArts : App by Piyush Kaushik</p>
+</div>
+</div>
+</div>
+<script>
+$("document").ready(function(){
+var global=0;
+var arrayDelete=[];
+//clicking AddTask button and adding the task to the list.
+$("#addTask").on("click", function(){
+global+=1;
+var tdtask=document.getElementById("taskBox").value;
+console.log("To do task : "+tdtask);
+$("#taskList").prepend("<li><input type='checkbox' class='tdCheckboxes' id='"+global+"' >"+tdtask+"</li>");
+document.getElementById("taskBox").value="";
+});
+
+//clicking a checkbox to strike or unstrike tasks
+$(document).on("click", ".tdCheckboxes", function(){
+if(this.checked){
+$(this).parent().wrap("<strike>");
+$(this).parent().css("color", "gray");
+}
+if(!this.checked){
+$(this).parent().unwrap("<strike>");
+$(this).parent().css("color", "red");
+}
+});
+//page refresh
+$("#clear").on("click", function(){
+    location.reload(true);
+ });
+  
+//Delete tasks  
+  $("#clearSelected").on("click", function(){
+    var allCheckboxes=document.getElementsByClassName("tdCheckboxes");
+	for(var i=0;i<allCheckboxes.length;i++){
+	 if(allCheckboxes[i].checked){
+	 arrayDelete.push(allCheckboxes[i].id);
+	 
+	 }
+	}
+	console.log("currently checked checkboxes id's are : ");
+	console.log(arrayDelete);
+	for(var i=0;i<arrayDelete.length;i++){
+	$('#'+arrayDelete[i]).parent().remove();
+	}
+ });
+  
+});
+</script>
+</body>
+
+
+</html>
