@@ -1,14 +1,9 @@
 <!--
 BUGS
-
 1. Screen Reset to Zero
-2. 4^5 = 9 SHOULD WORK CORRECTLY : FIXED
+2. 4^5  SHOULD WORK CORRECTLY : FIXED
 3. Keyboard input
 4. Blinking cursor : FIXED
-
-
-
-
 -->
 
 
@@ -147,7 +142,8 @@ font-weight:bold;
 <!--THIS IS ACTUAL JAVASCRIPT CODE TO RUN THE CALCULATOR -->
 
 <script>
-var timer, i, flag=0;
+var timer, i;
+var flag = false;
 var inputs = document.getElementsByTagName("button");
 
 <!-- Function key : This function puts the value of a numeric or arithmetic operator key pressed in to the display area-->
@@ -226,11 +222,11 @@ var tempVal=document.getElementById("display").value;
 var tempArr=document.getElementById("display").value.split('');
 console.log(tempArr);
 for(i=0;i<tempArr.length;i++){
-if(tempArr[i]=='^'){
-flag = 1;
+if(tempArr[i]==='^'){
+flag = true;
 }
 }
-if(flag===1){
+if(flag==true){
 
 document.getElementById("display").value="use x^y button";
 endCalc();
