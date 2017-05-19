@@ -147,7 +147,7 @@ font-weight:bold;
 <!--THIS IS ACTUAL JAVASCRIPT CODE TO RUN THE CALCULATOR -->
 
 <script>
-var timer, i;
+var timer, i, flag=0;
 var inputs = document.getElementsByTagName("button");
 
 <!-- Function key : This function puts the value of a numeric or arithmetic operator key pressed in to the display area-->
@@ -225,9 +225,14 @@ function ans(){
 var tempVal=document.getElementById("display").value;
 var tempArr=document.getElementById("display").value.split('');
 console.log(tempArr);
-if(!isNaN(tempArr[0]) && tempArr[1]==='^' &&  !isNaN(tempArr[2])){
+for(i=0;i<tempArr.length;i++){
+if(tempArr[i]==='^'){
+flag = 1;
+}
+}
+if(flag===1){
 
-document.getElementById("display").value=Math.pow(tempArr[0], tempArr[2]);
+document.getElementById("display").value="calculate using x^y button";
 
 }
 //
@@ -322,10 +327,31 @@ endCalc();
 function POW(){
 var tempArr=document.getElementById("display").value.split('');
 console.log(tempArr);
-if(!isNaN(tempArr[0]) && tempArr[1]==='^' &&  !isNaN(tempArr[2])){
+//New code for more than single digits in calculation
+var loc;
+for(i=0;i<tempArr.length;i++){
+if(tempArr[i]==='^'){
+loc = i;
+}
+}
+var base = '';
+var expo = ''; 
+for(i=0;i<loc;i++){
+base += tempArr[i]; 
+}
+for(i=(loc+1);i<tempArr.length;i++){
+expo += tempArr[i];
+}
+console.log("base is  : "+base);
+console.log("expo is  : "+expo);
+//
+//if(!isNaN(tempArr[0]) && tempArr[1]==='^' &&  !isNaN(tempArr[2])){
 
-document.getElementById("display").value=Math.pow(tempArr[0], tempArr[2]);
+//document.getElementById("display").value=Math.pow(tempArr[0], tempArr[2]);
 
+//}
+if(!isNaN(base) && !isNaN(expo)){
+document.getElementById("display").value=Math.pow(base, expo);
 }
 else {
 document.getElementById("display").value="Enter like this : x^y";
