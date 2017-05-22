@@ -104,7 +104,7 @@ font-weight:bold;
 <button class="buttonsStd" id="0" onClick='key("0")'>0</button>
 <button class="buttonsStd" id="." onClick='key(".")'>.</button>
 <button class="buttonsStd" id="=" onClick='ans()'>=</button>
-<button class="buttonsStd" id="^" onClick='key("^")'>^</button>
+<button class="buttonsStd" id="^" onClick='carat("^")'>^</button>
 <button class="buttonsStd" id="x^y" onClick='POW()'>x^y</button>
 
 </div>
@@ -162,6 +162,27 @@ document.getElementById("display").value="ON";
 */
 
 }
+<!-- Separate function for key '^'
+function carat(val){
+var tempVal = document.getElementById("display").value;
+//clearInterval(timer);
+if(tempVal==="ON"){
+endCalc();
+}
+else{
+document.getElementById("display").value+=val;
+for (i = 0; i < inputs.length; i++) {
+  if(inputs[i].id === '='){
+  document.getElementById(inputs[i].id).disabled= true;
+  document.getElementById(inputs[i].id).style.backgroundColor= "gray";
+  }
+
+}
+}
+}
+-->
+
+
 
 <!-- Function key : This function puts the value of a numeric or arithmetic operator key pressed in to the display area-->
 function key(val){
@@ -177,7 +198,7 @@ case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': 
 document.getElementById("display").value+=val;
 break;
 
-case '+': case '-': case '*': case '/': case '%': case '.': case '^' : case '(' : case ')' :
+case '+': case '-': case '*': case '/': case '%': case '.': case '(' : case ')' :
 var tempVal;
 tempVal=document.getElementById("display").value;
 if(tempVal=""){
@@ -219,21 +240,6 @@ onLoad();
 
 function ans(){
 var tempVal=document.getElementById("display").value;
-var tempArr=document.getElementById("display").value.split('');
-console.log(tempArr);
-for(i=0;i<tempArr.length;i++){
-if(tempArr[i]==='^'){
-flag = true;
-}
-}
-if(flag==true){
-
-document.getElementById("display").value="use x^y button";
-endCalc();
-}
-//
-else
-{
 try {
     	document.getElementById("display").value=eval(tempVal);
 		
@@ -247,11 +253,7 @@ finally{
 endCalc();
 }
 }
-//
 
-
-
-}
 <!-- This function evaluates the expression in the display area -->
 function endCalc(){
 for (i = 0; i < inputs.length; i++) {
