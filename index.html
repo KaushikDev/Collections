@@ -295,7 +295,8 @@ endCalc();
 <!-- This function evaluates the expression in the display area -->
 function log(){
 var tempVal=document.getElementById("display").value;
-document.getElementById("display").value=Math.log10(tempVal);
+//document.getElementById("display").value=Math.log10(tempVal);
+document.getElementById("display").value=Math.log(tempVal)/Math.LN10 ;	
 endCalc();
 }
 
