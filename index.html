@@ -236,7 +236,7 @@ border-color:gray;
 				<input type="hidden" name="u" value="6b7e34e3339b52dfb3f2ad3f4">
 				<input type="hidden" name="id" value="048d6cbe5c">
 				<input type="email" name="MERGE0" id="MERGE0" style="height:30px;width:200px;font-color:white;font-size:15px;border-radius:5px" placeholder='Enter your email here...'>
-				<input type="button" class="btn" sytle="border-radius:5px;" value="Subscribe" onclick="postThanks()">
+				<input type="submit" class="btn" sytle="border-radius:5px;" value="Subscribe" onclick="postThanks()">
 				</form>
 				</div>			
 			
@@ -266,10 +266,9 @@ document.getElementById("postThanks").innerHTML = "";
 document.getElementById("postThanks").innerHTML = "Thanks for subscribing "+name+". Will keep you posted for new/enhanced apps.";
 document.getElementById("form").action = "https://twitter.us16.list-manage.com/subscribe/post";
 }
-else{
+else
 document.getElementById("postThanks").innerHTML = "Please enter your email to subscribe";
-
-}}
+}
 </script>
 <!--
 <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us16.list-manage.com","uuid":"6b7e34e3339b52dfb3f2ad3f4","lid":"048d6cbe5c"}) })</script>
