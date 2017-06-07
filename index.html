@@ -1,357 +1,279 @@
-<!DOCTYPE html>
 <html>
-
 <head>
-<meta charset="UTF-8">
-<title>Big Fat Calculator</title>
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" >
-<link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.min.css">
-
+<title>All In One App</title>
+ <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple|3d-float" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.min.css">
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 
 </head>
-
-
-<body style="background-color:black;background-image:url('');" onload="onLoad()">
-
+<body background="https://i.ytimg.com/vi/lWBHP6OnET0/maxresdefault.jpg;" style="background-size:100% 100%;">
 <style>
-<!-- all the styling is done here-->
 
-.headlinestyle{
-font-size:45px;font-family:Lobster;color:White;font-weight:bold;text-align:center;text-shadow:1px 1px red;
-
+h1{
+font-family: Lobster;
+color:white;
 }
 
-.calcStyle{
-border-width:5px;border-radius:10px;color:Black;width:350px;height:375px;border-style:solid;padding:10px;margin-top:40px;margin-left:50px;background-color:#D8D8D8;
-
-
-}
-
-
-.buttonsStd{
-height:50px;
-width:50px;
-background-color:aqua;
-color:black;
-border-color:#151e1a;
-margin-top:auto;
-margin-bottom:auto;
-margin-right:auto;
-margin-left:auto;
-border-radius:5px;
-postion:absolute;
-font-size:20px;
-font-weight:bold;
+.img-circle{
+width:125px;
+height:125px;
+border-radius:50%;
+border-style:solid;
+border-width:5px;
+border-color:gray;
 }
 
 
+
+.img-zoom {
+    
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+}
+ 
+.transition {
+    -webkit-transform: scale(2); 
+    -moz-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2);
+}
 </style>
-
 <div class="container-fluid">
 
-<div class="row text-center">
- <div class="col-xs-12"><!--This column has the heading--></div>
-<h1 class="headlinestyle" style="font-size:45px;font-weight:bold;color:white;text-align:center;font-family:lobster;">Big Fat Calculator</h1>
-</div>
-
-
-
-<div class="row text-center">
-<div class="col-xs-4"><!--This column has nothing to show--></div>
-
-
-<div class="col-xs-4 calcStyle">
-<!--This column has actual calculator displayed-->
-<input id="display" type="text" style="height:50px;width:320px;border-width:5px;border-style:solid;color:Black;border-radius:5px;background-color:#556B2F;font-weight:bold;font-size:25px;" readonly >
-<div style="margin-top:15px;">
-
-<button class="buttonsStd" id="AC" onClick='allClear()'>AC</button>
-<button class="buttonsStd" id="CE" onClick='pop()'>CE</button>
-<button class="buttonsStd" id="%" onClick='key("%")'>%</button>
-<button class="buttonsStd" id="/" onClick='key("/")'>/</button>
-<button class="buttonsStd" id="sin" onClick='sin()'>sin</button>
-<button class="buttonsStd" id="π" onClick='PI()'>π</button>
-<button class="buttonsStd" id="7" onClick='key("7")'>7</button>
-<button class="buttonsStd" id="8" onClick='key("8")'>8</button>
-<button class="buttonsStd" id="9" onClick='key("9")'>9</button>
-<button class="buttonsStd" id="*" onClick='key("*")'>*</button>
-<button class="buttonsStd" id="cos" onClick='cos()'>cos</button>
-<button class="buttonsStd" id="!" onClick='fact()'>!</button>
-<button class="buttonsStd" id="4" onClick='key("4")'>4</button>
-<button class="buttonsStd" id="5" onClick='key("5")'>5</button>
-<button class="buttonsStd" id="6" onClick='key("6")'>6</button>
-<button class="buttonsStd" id="-" onClick='key("-")'>-</button>
-<button class="buttonsStd" id="tan" onClick='tan()'>tan</button>
-<button class="buttonsStd" id="(" onClick='key("\(")'>(</button>
-<button class="buttonsStd" id="1" onClick='key("1")'>1</button>
-<button class="buttonsStd" id="2" onClick='key("2")'>2</button>
-<button class="buttonsStd" id="3" onClick='key("3")'>3</button>
-<button class="buttonsStd" id="+" onClick='key("+")'>+</button>
-<button class="buttonsStd" id="lg10" onClick='log()'>lg10</button>
-<button class="buttonsStd" id=")" onClick='key("\)")'>)</button>
-<button class="buttonsStd" id="√" onClick='Sqrt()'>√</button>
-<button class="buttonsStd" id="0" onClick='key("0")'>0</button>
-<button class="buttonsStd" id="." onClick='key(".")'>.</button>
-<button class="buttonsStd" id="=" onClick='ans()'>=</button>
-<button class="buttonsStd" id="^" onClick='carat("^")'>^</button>
-<button class="buttonsStd" id="x^y" onClick='POW()'>x^y</button>
-
-</div>
-</div>
-
-
-
-<div class="col-xs-4"><!--This column has nothing to show--></div>
-</div>
-
-
-
-
-<div class="row text-center" style="margin-top:10px;">
+<div class="row text-center" style="margin-top:10px;margin-bottom:40px;">
 <div class="col-xs-12">
-<p style="color:white;font-family:lobster"><i class="fa fa-copyright" aria-hidden="true"></i>KaushikCodeArts : App by Piyush Kaushik</p>
+<h1>Kaushik's Code Arts Collection</h1>
 </div>
+</div>
+
+
+<div class="row text-center" style="margin-bottom:5px;">
+
+<div class="col-xs-1">
+</div>
+
+<div class="col-xs-1">
+</div>
+
+<div class="col-xs-1">
+<a href="https://codepen.io/Kaushik02/full/jqPKRg/" target="_blank">
+ <img src="http://www.schooljotter.com/imagefolders/phoenixpri/galleryImages/2012.13/Parents_Council/PC_2012.13/pls_parents-icon.gif" class="img-circle img-zoom" alt="A Tribute to Family">
+ </a>
+</div>
+
+<div class="col-xs-1">
+</div>
+
+<div class="col-xs-1">
+<a href="https://codepen.io/Kaushik02/full/QEqEXg/" target="_blank">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ42TnpkL_MYJ56JPDYeW_HRBni5xcK3oejn-DPAyTMXMgIgjABNw" class="img-circle img-zoom" alt="Pomodoro Timer">
+</a>
+</div>
+
+<div class="col-xs-1">
+</div>
+
+<div class="col-xs-1">
+<a href="https://codepen.io/Kaushik02/full/rewGwX/" target="_blank">
+<img src="http://www.quotes.net/root/app_common/img/top_logo_quo.png" class="img-circle img-zoom" alt="Random Quote Gen">
+</a>
+</div>
+
+<div class="col-xs-1">
+</div>
+
+<div class="col-xs-1">
+<a href="https://codepen.io/Kaushik02/full/zojePZ/" target="_blank">
+<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcShgnUzjw7P1i6lYKiUdKkJJU2jkrvmWH32Awswy6TCGEVzKAP-" class="img-circle img-zoom" alt="To Do List">
+</a>
+</div>
+
+<div class="col-xs-1">
+</div>
+
+<div class="col-xs-1">
+</div>
+
 </div>
   
-  <div class="row text-center">
-                <div class="col-xs-12">
-				<a id="fb" class="btn btn-default text-center" style="background-color:transparent;border-color:transparent;" href="https://www.facebook.com/sharer/sharer.php?u=http://codepen.io/Kaushik02/full/PzmVrP/" target="_blank"><i class="fa fa-facebook" aria-hidden="true" style="color:#0066ff;font-size:30px;font-weight:bold;"></i></a>
-                <a id="whatsapp" class="btn btn-default text-center" style="background-color:transparent;border-color:transparent;" href="whatsapp://send?text=http://codepen.io/Kaushik02/full/PzmVrP/"><i class="fa fa-whatsapp" aria-hidden="true" style="color:#4dff4d;font-size:30px;font-weight:bold;"></i></a>
-        		<a id="tweet" class="btn btn-default text-center" style="background-color:transparent;border-color:transparent;" href="https://twitter.com/home?status=http%3A//codepen.io/Kaushik02/full/PzmVrP/" target="_blank"><i class="fa fa-twitter" aria-hidden="true" style="color:aqua;font-size:30px;font-weight:bold;"></i></a>
-                </div>
-        </div>
+  
+  
+<div class="row text-center" style="margin-bottom:5px;">
+
+<div class="col-xs-1">
 </div>
 
-<script  type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script  type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.js">
-  </script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<div class="col-xs-1">
+</div>
 
-<!--THIS IS ACTUAL JAVASCRIPT CODE TO RUN THE CALCULATOR -->
+<div class="col-xs-1">
+</div>
 
-<script>
-"use strict";
-var timer, i;
-var flag = false;
-var inputs = document.getElementsByTagName("button");
+<div class="col-xs-1">
+<a href="https://codepen.io/Kaushik02/full/PzmVrP/" target="_blank">
+<img src="http://365psd.com/images/previews/1d3/psd-calculator-web-icon-53229.jpg" class="img-circle img-zoom" alt="Electronic Calculator">
+</a>
+</div>
 
-<!-- Function key : This function puts the value of a numeric or arithmetic operator key pressed in to the display area-->
-function onLoad(){
-document.getElementById("display").value="ON";
-/*
- timer=setInterval(function(){
- 
- setTimeout(function(){
- document.getElementById("display").value="";
- }, 1000);
+<div class="col-xs-1">
+</div>
 
- document.getElementById("display").value="_";
- 
- }, 2000);
-*/
+<div class="col-xs-1">
+<a href="https://codepen.io/Kaushik02/full/Myvgqd/" target="_blank">
+<img src="http://mediad.publicbroadcasting.net/p/wunc/files/201403/weather-153703_640.png" class="img-circle img-zoom" alt="Weather App">
+</a>
+</div>
 
-}
-<!-- Separate function for key '^'-->
-function carat(val){
-var tempVal = document.getElementById("display").value;
-//clearInterval(timer);
-if(tempVal==="ON"){
-endCalc();
-}
-else{
-document.getElementById("display").value+=val;
-for (i = 0; i < inputs.length; i++) {
-  if(inputs[i].id === '='){
-  document.getElementById(inputs[i].id).disabled= true;
-  document.getElementById(inputs[i].id).style.backgroundColor= "gray";
-  }
+<div class="col-xs-1">
+</div>
 
-}
-}
-}
+<div class="col-xs-1">
+<a href="https://codepen.io/Kaushik02/full/jrBBrB/" target="_blank">
+<img src="https://kidavalanche.files.wordpress.com/2010/02/p1010018.jpg" class="img-circle img-zoom" alt="Tic-Tac-Toe">
+</a>
+</div>
 
+<div class="col-xs-1">
+</div>
 
+<div class="col-xs-1">
+<a href="https://codepen.io/Kaushik02/full/BKjBpw/" target="_blank">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW94fL-xxhwDX44iYsL6jtN54GHscQYcBC8znvCWMdeHvcwe0s4A" class="img-circle img-zoom" alt="Portfolio">
+</a>
+</div>
 
+<div class="col-xs-1">
+</div>
 
-<!-- Function key : This function puts the value of a numeric or arithmetic operator key pressed in to the display area-->
-function key(val){
-var tempVal = document.getElementById("display").value;
-//clearInterval(timer);
-if(tempVal==="ON"){
-document.getElementById("display").value="";
-}
+</div>
+  
+  
+<div class="row text-center" style="margin-bottom:5px;">
 
-switch(val){
+<div class="col-xs-1">
+</div>
 
-case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': case '0':
-document.getElementById("display").value+=val;
-break;
+<div class="col-xs-1">
+</div>
 
-case '+': case '-': case '*': case '/': case '%': case '.': case '(' : case ')' :
-var tempVal;
-tempVal=document.getElementById("display").value;
-if(tempVal=""){
-document.getElementById("display").value="";
-}
+<div class="col-xs-1">
+<a href="https://codepen.io/Kaushik02/full/kkBjWY/" target="_blank">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-sGVIHUu63lSKSJdmRrGYNkqPsEISF69HGN8EnZMMrXMYVgd3" class="img-circle img-zoom" alt="Wiki Viewer">
+</a>
+</div>
 
-else if(tempVal !='+' && tempVal !='-' && tempVal !='*' && tempVal !='/' && tempVal !='%' && tempVal !='.'){
-document.getElementById("display").value+=val;
-}
-else {
-document.getElementById("display").value=tempVal;
+<div class="col-xs-1">
+</div>
 
-}
-}
-}
+<div class="col-xs-1">
+<a href="https://codepen.io/Kaushik02/full/mAwGWQ/" target="_blank">
+<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSF9AFnSHyarPofxnnnOP7WfRrtaMgNtV2XvmrpCkan997g4TfK" class="img-circle img-zoom" alt="Simon Game">
+</a>
+</div>
 
-<!-- Function allClear : This function clears everything in the display area-->
-function allClear(){
-document.getElementById("display").value="ON";
-for (i = 0; i < inputs.length; i++) {
- 
-  document.getElementById(inputs[i].id).disabled= false;
-  document.getElementById(inputs[i].id).style.backgroundColor = "aqua";
+<div class="col-xs-1">
+</div>
 
-  }
-}
+<div class="col-xs-1">
+<a href="https://codepen.io/Kaushik02/full/kkZQAx/" target="_blank">
+<img src="http://i.obozrevatel.com/13/1825771/748402.jpg" class="img-circle img-zoom" alt="Twicth TV JSON API">
+</a>
+</div>
 
-<!-- This function clears the entry one by one -->
-function pop(){
-var dispArr=(document.getElementById("display").value).split('');
-dispArr.pop();
-document.getElementById("display").value=dispArr.join('');
-if(dispArr.length===0){
+<div class="col-xs-1">
+</div>
 
-onLoad();
-}
-}
-<!-- This function evaluates the expression in the display area -->
+<div class="col-xs-1">
+<a href="https://codepen.io/Kaushik02/full/RovLmW/" target="_blank">
+<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTN5HDLngTxZXVGecmZZa5R4e0XqH2I4IkKHFsWQfXx-reTx0dD" class="img-circle img-zoom" alt="Particle Motion">
+</a>
+</div>
 
-function ans(){
-var tempVal=document.getElementById("display").value;
-try {
-    	document.getElementById("display").value=eval(tempVal);
-		
-		} catch (e) {
-        document.getElementById("display").value="Wrong Expression !!"; 
+<div class="col-xs-1">
+</div>
+
+<div class="col-xs-1">
+</div>
+
+<div class="col-xs-1">
+</div>
+</div>
+
+<div class="row text-center" style="margin-top:30px;">
+<div class="col-xs-12">
+<p style="color:white;"><i class="fa fa-copyright" aria-hidden="true"></i>KaushikCodeArts : App by Piyush Kaushik</p>
+</div>
+</div>
+  <div class="row text-center">
+                <div class="col-xs-12">
+				
+				<a id="fb" class="btn btn-default text-center img-zoom" style="border-color:transparent;background-color:transparent;height:40px;width:40px;border-radius:50%" href="https://www.facebook.com/sharer/sharer.php?u=https://codepen.io/Kaushik02/full/qRPEZE/" target="_blank"><i class="fa fa-facebook" aria-hidden="true" style="color:#3380FF;font-size:35px;font-weight:bold;"></i></a>
+				
+				
+				
+                <a id="whatsapp" class="btn btn-default text-center img-zoom" style="border-color:transparent;background-color:transparent;height:40px;width:40px;border-radius:50%" href="whatsapp://send?text=https://codepen.io/Kaushik02/full/qRPEZE/"><i class="fa fa-whatsapp" aria-hidden="true" style="color:#3CFF33;font-size:35px;font-weight:bold;"></i></a>
+				
+				
+        		<a id="tweet" class="btn btn-default text-center img-zoom" style="border-color:transparent;background-color:transparent;height:40px;width:40px;border-radius:50%" href="https://twitter.com/home?status=https://codepen.io/Kaushik02/full/qRPEZE/" target="_blank"><i class="fa fa-twitter" aria-hidden="true" style="color:#3399FF;font-size:35px;font-weight:bold;"></i></a>
+                </div>
+				
+				
+				<div class="col-xs-12" style="margin-top:20px;">
+				</div>
+				
+				<div class="col-xs-12" style="font-size:25px;color:white;">
+				<p id="postThanks"></p>
+				</div>
+				
+				<div class="col-xs-12">
+				<form id ="form" action="https://twitter.us16.list-manage.com/subscribe/post" method="POST">
+				<input type="hidden" name="u" value="6b7e34e3339b52dfb3f2ad3f4">
+				<input type="hidden" name="id" value="048d6cbe5c">
+				<input type="email" name="MERGE0" id="MERGE0" style="height:30px;width:200px;font-color:white;font-size:15px;border-radius:5px">
+				<input type="submit" class="btn" sytle="border-radius:5px;" value="Subscribe" onclick="postThanks()">
+				</form>
+				</div>			
 			
-}
+			
+				
+        </div>
+</div>
+<script type="text/javascript">
 
-finally{
+  $(document).ready(function(){
+    $('.img-zoom').hover(function() {
+        $(this).addClass('transition');
+ 
+    }, function() {
+        $(this).removeClass('transition');
+    });
+  });
 
-endCalc();
-}
-}
-
-<!-- This function evaluates the expression in the display area -->
-function endCalc(){
-for (i = 0; i < inputs.length; i++) {
-  if(inputs[i].id === 'AC'){
-  document.getElementById(inputs[i].id).disabled= false;
-  }
-  else{
-  document.getElementById(inputs[i].id).disabled= true;
-  document.getElementById(inputs[i].id).style.backgroundColor = "gray";
-}
-  }
-}
-<!-- This function evaluates the expression in the display area -->
-function Sqrt(){
-var tempVal=document.getElementById("display").value;
-document.getElementById("display").value=Math.sqrt(tempVal);
-endCalc();
-}
-
-<!-- This function evaluates the expression in the display area -->
-function sin(){
-var tempVal=document.getElementById("display").value;
-document.getElementById("display").value=Math.sin(tempVal);
-endCalc();
-}
-<!-- This function evaluates the expression in the display area -->
-function cos(){
-var tempVal=document.getElementById("display").value;
-document.getElementById("display").value=Math.cos(tempVal);
-endCalc();
-}
-<!-- This function evaluates the expression in the display area -->
-function tan(){
-var tempVal=document.getElementById("display").value;
-document.getElementById("display").value=Math.tan(tempVal);
-endCalc();
-}
-<!-- This function evaluates the expression in the display area -->
-function log(){
-var tempVal=document.getElementById("display").value;
-//document.getElementById("display").value=Math.log10(tempVal);
-//+++++++Math.log10(tempVal) is not used because it is not supported on IE. Hence the following funcion is used.
-document.getElementById("display").value=Math.log(tempVal)/Math.LN10 ;	
-endCalc();
-}
-
-<!-- This function evaluates the expression in the display area -->
-function fact(){
-
-var tempVal=Math.floor(document.getElementById("display").value);
-if(tempVal<=1){
-alert("Choose a number larger than 2");
-}
-var k =tempVal;
-while(tempVal!=1){
-tempVal-=1;
-k*=(tempVal);
-}
-document.getElementById("display").value=k;
-endCalc();
-}
-
-<!-- This function evaluates the expression in the display area -->
-function PI(){
-//clearInterval(timer);
-var tempVal=document.getElementById("display").value;
-document.getElementById("display").value=Math.PI;
-endCalc();
-}
-<!-- This function evaluates the expression in the display area -->
-function POW(){
-var tempArr=document.getElementById("display").value.split('');
-console.log(tempArr);
-//New code for more than single digits in calculation
-var loc;
-for(i=0;i<tempArr.length;i++){
-if(tempArr[i]==='^'){
-loc = i;
-}
-}
-var base = '';
-var expo = ''; 
-for(i=0;i<loc;i++){
-base += tempArr[i]; 
-}
-for(i=(loc+1);i<tempArr.length;i++){
-expo += tempArr[i];
-}
-console.log("base is  : "+base);
-console.log("expo is  : "+expo);
-//
-//if(!isNaN(tempArr[0]) && tempArr[1]==='^' &&  !isNaN(tempArr[2])){
-
-//document.getElementById("display").value=Math.pow(tempArr[0], tempArr[2]);
-
-//}
-if(!isNaN(base) && !isNaN(expo)){
-document.getElementById("display").value=Math.pow(base, expo);
-}
-else {
-document.getElementById("display").value="Enter like this : x^y";
-}
-endCalc();
-}
 </script>
 
+<script>
+function postThanks(){
+var name = document.getElementById("MERGE0").value;
 
+if(document.getElementById("postThanks").innerHTML!=""){
+document.getElementById("postThanks").innerHTML = "";
+document.getElementById("postThanks").innerHTML = "Thanks for subscribing "+name+". Will keep you posted for new/enhanced apps.";
+document.getElementById("form").action = "https://twitter.us16.list-manage.com/subscribe/post";
+}
+else{
+document.getElementById("postThanks").innerHTML = "Thanks for subscribing "+name+". Will keep you posted for new/enhanced apps.";
+document.getElementById("form").action = "https://twitter.us16.list-manage.com/subscribe/post";
+}}
+</script>
+<!--
+<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us16.list-manage.com","uuid":"6b7e34e3339b52dfb3f2ad3f4","lid":"048d6cbe5c"}) })</script>
+-->
 </body>
+
 </html>
